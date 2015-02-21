@@ -32,7 +32,6 @@ csvWriter = csv.writer(csvFile)
 
 json_result = api.trends_available()
 for el in json_result:
-  counter += 1
   # if counter > 100:
   #   break
   if el[u'countryCode'] == u'US':
@@ -47,6 +46,13 @@ for el in json_result:
                                  since_id=2014-06-12).items():
         if(tweet.text.startswith('RT')):
           continue
+
+        counter += 1
+
+        if(counter > 500):
+          counter = 0
+          break
+
         print tweet.text
         csvWriter.writerow([otrends[0]['locations'][0]['name'], ":=>", trend['name'], ":=>", tweet.text.encode('utf-8')])      
 
