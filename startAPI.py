@@ -26,7 +26,7 @@ api = tweepy.API(auth)
 counter = 0
 
 # Open/Create a file to append data
-csvFile = open('tweets.csv', 'a')
+csvFile = open('tweets7.csv', 'a')
 #Use csv Writer
 csvWriter = csv.writer(csvFile)
 
@@ -49,7 +49,7 @@ for el in json_result:
 
         counter += 1
 
-        if(counter > 500):
+        if(counter > 20):
           counter = 0
           break
 
