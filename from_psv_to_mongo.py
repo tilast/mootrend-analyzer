@@ -9,9 +9,7 @@ psv_items = database.psv_items
 
 csvFile = open('new_tweets.csv', 'r')
 
-item = {}
-flag = False
-for line in csvFile:
+def write_line_to_db(line, flag, item):
   penisesParts = line.split(':=>')
   print len(penisesParts)
   if(flag):
@@ -27,10 +25,17 @@ for line in csvFile:
     else:
       item["tweet"] += " " + line
       flag = True
-      continue
+      return
   
   if(len(penisesParts) == 3):
     item["city"] = penisesParts[0]
     item["trend"] = penisesParts[1]
     item["tweet"] = penisesParts[2]
-    flag = True
+    flag = True  
+
+
+item = {}
+flag = False
+
+for line in csvFile:
+  write_line_to_db(line, flag, item)
